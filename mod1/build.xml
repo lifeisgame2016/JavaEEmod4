@@ -1,0 +1,31 @@
+<project name="ant-mod1" basedir=".">
+
+    <property name="src" location="src/main/java/com/java/mod1"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="runner" value="com.java.mod1.Runner"/>
+
+    <target name="init">
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${build}" source="1.8" target="1.8"/>
+    </target>
+
+    <target name="dist" depends="compile">
+        <jar destfile="${dist}/AntMod1.jar">
+            <fileset dir="${build}"/>
+            <manifest>
+                <attribute name="Main-Class" value="${runner}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+</project>
